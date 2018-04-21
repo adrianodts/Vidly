@@ -1,0 +1,48 @@
+﻿@model List<Vidly.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers :: List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (@Model == null || @Model.Count == 0)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <h2>Customers</h2>
+                <p>We don't have any customers yet.</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h2>Customers</h2>
+    <p>@Html.ActionLink("New", "New", "Customer", new { @class = "btn btn-primary" })</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <table class="table table-hover">
+                    <thead class="text-white bg-primary">
+                        <tr>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Membership Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="table-secondary">
+                                <th scope="row">
+                                    @Html.ActionLink(item.Name, "Edit", new { id = item.Id })
+                                </th>
+                                <th>@item.MembershipType.Name</th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

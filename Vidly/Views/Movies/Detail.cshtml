@@ -1,0 +1,22 @@
+﻿@model Vidly.Models.Movie
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+<ul>
+    @{
+        string releaseDate = Model.ReleaseDate.ToLongDateString();
+        string dateAdded = Model.DateAdded.ToLongDateString();
+    }
+    <li><b>Genre: </b>@Html.DisplayFor(model => model.Genre.Name)</li>
+    <li><b>Release Date: </b>@releaseDate</li>
+    <li><b>Date Added: </b>@dateAdded</li>
+    <li><b>Number in Stock: </b>@Html.DisplayFor(model => model.StockQuantity)</li>
+</ul>
+<p>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>

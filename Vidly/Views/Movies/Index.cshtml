@@ -1,0 +1,49 @@
+﻿@model List<Vidly.Models.Movie>
+
+@{
+    ViewBag.Title = "Movie :: List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (@Model == null || @Model.Count == 0)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <h2>Movies</h2>
+                <p>We don't have any movies yet.</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <h2>Movies</h2>
+                <table class="table table-hover">
+                    <thead class="text-white bg-primary">
+                    <tr>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Genre</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="table-secondary">
+
+                            <th scope="row">
+                                @Html.ActionLink(item.Name, "Detail", new {id = item.Id})
+                                @*, new {@class = "list-group-item list-group-item-action"})*@
+                            </th>
+                            <th>@item.Genre.Name</th>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

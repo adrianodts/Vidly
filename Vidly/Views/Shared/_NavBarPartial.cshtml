@@ -1,0 +1,20 @@
+﻿@*@model Vidly.Models.Movie*@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
+    @Html.ActionLink(@*@Model.Name*@ "Vidly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Customers", "Index", "Customer", routeValues: null, htmlAttributes: new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Movies", "Index", "Movies", routeValues: null, htmlAttributes: new { @class = "nav-link" })
+            </li>    
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+</nav>
