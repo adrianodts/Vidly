@@ -203,47 +203,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804180156517_IsSubscribedToNewsLetter.cs" />
-    <Compile Include="Migrations\201804180156517_IsSubscribedToNewsLetter.Designer.cs">
-      <DependentUpon>201804180156517_IsSubscribedToNewsLetter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804180203489_AddMembershipType.cs" />
-    <Compile Include="Migrations\201804180203489_AddMembershipType.Designer.cs">
-      <DependentUpon>201804180203489_AddMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804180211250_InitialModel.cs" />
-    <Compile Include="Migrations\201804180211250_InitialModel.Designer.cs">
-      <DependentUpon>201804180211250_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804180252286_AddCustomerNameDataAnnotation.cs" />
-    <Compile Include="Migrations\201804180252286_AddCustomerNameDataAnnotation.Designer.cs">
-      <DependentUpon>201804180252286_AddCustomerNameDataAnnotation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804180354419_AddMembershipTypeName.cs" />
-    <Compile Include="Migrations\201804180354419_AddMembershipTypeName.Designer.cs">
-      <DependentUpon>201804180354419_AddMembershipTypeName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804180408472_CustomerAddBirthDate.cs" />
-    <Compile Include="Migrations\201804180408472_CustomerAddBirthDate.Designer.cs">
-      <DependentUpon>201804180408472_CustomerAddBirthDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804182358149_GenreAdded.cs" />
-    <Compile Include="Migrations\201804182358149_GenreAdded.Designer.cs">
-      <DependentUpon>201804182358149_GenreAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804190005384_GenreAdded1.cs" />
-    <Compile Include="Migrations\201804190005384_GenreAdded1.Designer.cs">
-      <DependentUpon>201804190005384_GenreAdded1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804190329207_CustomerRequiredFields.cs" />
-    <Compile Include="Migrations\201804190329207_CustomerRequiredFields.Designer.cs">
-      <DependentUpon>201804190329207_CustomerRequiredFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804210148205_CustomerRequiredFields1.cs" />
-    <Compile Include="Migrations\201804210148205_CustomerRequiredFields1.Designer.cs">
-      <DependentUpon>201804210148205_CustomerRequiredFields1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -328,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -336,38 +296,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804180156517_IsSubscribedToNewsLetter.resx">
-      <DependentUpon>201804180156517_IsSubscribedToNewsLetter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804180203489_AddMembershipType.resx">
-      <DependentUpon>201804180203489_AddMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804180211250_InitialModel.resx">
-      <DependentUpon>201804180211250_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804180252286_AddCustomerNameDataAnnotation.resx">
-      <DependentUpon>201804180252286_AddCustomerNameDataAnnotation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804180354419_AddMembershipTypeName.resx">
-      <DependentUpon>201804180354419_AddMembershipTypeName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804180408472_CustomerAddBirthDate.resx">
-      <DependentUpon>201804180408472_CustomerAddBirthDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804182358149_GenreAdded.resx">
-      <DependentUpon>201804182358149_GenreAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804190005384_GenreAdded1.resx">
-      <DependentUpon>201804190005384_GenreAdded1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804190329207_CustomerRequiredFields.resx">
-      <DependentUpon>201804190329207_CustomerRequiredFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804210148205_CustomerRequiredFields1.resx">
-      <DependentUpon>201804210148205_CustomerRequiredFields1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
