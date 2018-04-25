@@ -12,16 +12,18 @@
             <div class="list-group">
                 <h2>Movies</h2>
                 <p>We don't have any movies yet.</p>
+                <p>@Html.ActionLink("New Movie", "New", "Movie", new { @class = "btn btn-primary" })</p>
             </div>
         </div>
     </div>
 }
 else
 {
+    <h2>Movies</h2>
+    <p>@Html.ActionLink("New", "New", "Movie", new { @class = "btn btn-primary" })</p>
     <div class="row">
         <div class="col-md-6">
             <div class="list-group">
-                <h2>Movies</h2>
                 <table class="table table-hover">
                     <thead class="text-white bg-primary">
                     <tr>
@@ -33,10 +35,8 @@ else
                     @foreach (var item in Model)
                     {
                         <tr class="table-secondary">
-
                             <th scope="row">
-                                @Html.ActionLink(item.Name, "Detail", new {id = item.Id})
-                                @*, new {@class = "list-group-item list-group-item-action"})*@
+                                @Html.ActionLink(item.Name, "Edit", new { id = item.Id })
                             </th>
                             <th>@item.Genre.Name</th>
                         </tr>

@@ -68,7 +68,7 @@ namespace Vidly.Controllers
             return View(movies);
         }
 
-        [Route("movies/detail/{id}")]
+        //[Route("movies/detail/{id}")]
         public ActionResult Detail(int? id)
         {
             Movie movie = null;
@@ -100,5 +100,66 @@ namespace Vidly.Controllers
         }
 
 
+        public ActionResult New()
+        {
+            var genresList = this._context.Genre.ToList();
+            var movieViewModel = new MovieViewModel
+            {
+                Movie = new Movie(),
+                Genres = genresList
+            };
+            return View("MovieForm", movieViewModel);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (!id.HasValue || id <= 0)
+            {
+                return HttpNotFound();
+            }
+
+            var genreList = this._context.Genre.ToList();
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new MovieViewModel
+            {
+                Genres = genreList,
+                Movie = movie
+            };
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieViewModel
+                {
+                    Movie = movie,
+                    Genres = this._context.Genre.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
+
+            if (movie.Id == 0)
+                this._context.Movies.Add(movie);
+            else
+            {
+                var movieDatabase = this._context.Movies.Single(c => c.Id == movie.Id);
+                movieDatabase.Name = movie.Name;
+                movieDatabase.ReleaseDate = movie.ReleaseDate;
+                movieDatabase.GenreId = movie.GenreId;
+                movieDatabase.StockQuantity = movie.StockQuantity;
+            }
+            this._context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+
+        }
     }
 }

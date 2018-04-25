@@ -32,7 +32,11 @@ namespace Vidly.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            return View(this._context.Customers.Include(c => c.MembershipType).ToList());
+            var count = this._context.Customers.Count();
+            if(count > 0)
+                return View(this._context.Customers.Include(c => c.MembershipType).ToList());
+
+            return View();
         }
 
         // GET: Customer/Detail/id
