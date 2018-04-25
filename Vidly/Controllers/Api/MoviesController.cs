@@ -22,11 +22,13 @@ namespace Vidly.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetMovies()
         {
-            var movieList = _context.Movies
+            var movieList = this._context.Movies.ToList();
                 //.Include(m => m.Genre)
-                .ToList().Select(Mapper.Map<Movie, MoviesDto>);
 
-            return Ok(movieList);
+            if (movieList == null || movieList.Count == 0)
+                return NotFound();
+
+            return Ok(movieList.Select(Mapper.Map<Movie, MoviesDto>));
         }
 
         [HttpGet]

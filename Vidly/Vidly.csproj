@@ -224,13 +224,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804240258095_Inicial.cs" />
-    <Compile Include="Migrations\201804240258095_Inicial.Designer.cs">
-      <DependentUpon>201804240258095_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240334350_ReleaseDateValidator.cs" />
-    <Compile Include="Migrations\201804240334350_ReleaseDateValidator.Designer.cs">
-      <DependentUpon>201804240334350_ReleaseDateValidator.cs</DependentUpon>
+    <Compile Include="Migrations\201804250621088_Initial.cs" />
+    <Compile Include="Migrations\201804250621088_Initial.Designer.cs">
+      <DependentUpon>201804250621088_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -329,11 +325,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804240258095_Inicial.resx">
-      <DependentUpon>201804240258095_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240334350_ReleaseDateValidator.resx">
-      <DependentUpon>201804240334350_ReleaseDateValidator.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804250621088_Initial.resx">
+      <DependentUpon>201804250621088_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
