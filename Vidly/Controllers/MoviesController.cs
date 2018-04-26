@@ -12,12 +12,18 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public MoviesController()
         {
                 this._context = new ApplicationDbContext();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            this._context.Dispose();
+        }
+
         //protected readonly List<Movie> movies = new List<Movie>
         //{
         //    new Movie { Id = 1, Name = "Shrek"},
@@ -64,9 +70,15 @@ namespace Vidly.Controllers
         [Route("movies/index")]
         public ActionResult Index()
         {
-            IEnumerable<Movie> movies = this._context.Movies.Include(m => m.Genre).ToList();
-            return View(movies);
+            //IEnumerable<Movie> movies = this._context.Movies.Include(m => m.Genre).ToList();
+            //return View(movies);
+
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
+    
 
         //[Route("movies/detail/{id}")]
         public ActionResult Detail(int? id)
@@ -99,7 +111,7 @@ namespace Vidly.Controllers
             return Content(year.ToString());
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genresList = this._context.Genre.ToList();
@@ -111,6 +123,7 @@ namespace Vidly.Controllers
             return View("MovieForm", movieViewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int? id)
         {
             if (!id.HasValue || id <= 0)
@@ -134,6 +147,7 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
