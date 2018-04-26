@@ -4,46 +4,79 @@
     ViewBag.Title = "Movie :: List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@if (@Model == null || @Model.Count == 0)
+<br />
+<h2>Movies</h2>
+<p>@Html.ActionLink("New Movie", "New", "Movie", new { @class = "btn btn-primary" })</p>
+<table class="table" id="movies" >
+    <thead>
+    <tr>
+        <th scope="col">Movie</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@section scripts
 {
-    <div class="row">
-        <div class="col-md-6">
-            <div class="list-group">
-                <h2>Movies</h2>
-                <p>We don't have any movies yet.</p>
-                <p>@Html.ActionLink("New Movie", "New", "Movie", new { @class = "btn btn-primary" })</p>
-            </div>
-        </div>
-    </div>
-}
-else
-{
-    <h2>Movies</h2>
-    <p>@Html.ActionLink("New", "New", "Movie", new { @class = "btn btn-primary" })</p>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="list-group">
-                <table class="table table-hover">
-                    <thead class="text-white bg-primary">
-                    <tr>
-                        <th scope="col">Movie</th>
-                        <th scope="col">Genre</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var item in Model)
+    <script>
+        $(document).ready(function() {
+            var table = $("#movies").dataTable({
+                ajax: {
+                    url: "/api/movies/",
+                    dataSrc: ""
+                },
+                columns: [
                     {
-                        <tr class="table-secondary">
-                            <th scope="row">
-                                @Html.ActionLink(item.Name, "Edit", new { id = item.Id })
-                            </th>
-                            <th>@item.Genre.Name</th>
-                        </tr>
+                        data: "name",
+                        render: function(data, type, movie) {
+                            return "<a href='/movie/edit/" + movie.id + "'>" + movie.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, movie) {
+                            return "<button data-movie-id='" + movie.id + "' data-movie-name='" + movie.name + "' class='" + "btn btn-danger js-delete'" + ">Delete</button>";
+                        }
                     }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                ]
+            });
+
+            $("#movies").on("click", " .js-delete", function() {
+                var button = $(this);
+
+                bootbox.confirm({
+                    message: "Are you sure you want to delete the movie: <b>" + button.attr("data-movie-name") + "</b>",
+                    buttons: {
+                        confirm: {
+                            label: 'Confirm',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            $.ajax({
+                                url: "api/movies/" + button.attr("data-movie-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.api().row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval");
+
 }

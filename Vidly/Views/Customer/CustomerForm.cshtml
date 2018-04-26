@@ -4,14 +4,14 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br/>
 @if (Model.Customer != null && Model.Customer.Id > 0)
 {
-    <h2>Edit</h2>
+    <h2>Edit Customer</h2>
 }
 else
 {
-    <h2>New</h2>
+    <h2>New Customer</h2>
 }
 
 @using (Html.BeginForm("Save", "Customer"))
@@ -40,7 +40,7 @@ else
     <br />
     @Html.HiddenFor(c => c.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
-    <button type="button" class="btn btn-primary">@Html.ActionLink("Customers List", "Index")</button>
+    <button type="button" class="btn btn-primary" onclick="history.back();">Customers List</button>
     
 }
 
