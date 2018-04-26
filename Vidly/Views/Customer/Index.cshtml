@@ -112,7 +112,7 @@ else
                         callback: function(result) {
                             if (result) {
                                 $.ajax({
-                                    url: "api/customers/" + button.attr("data-customer-id"),
+                                    url: "/api/customers/" + button.attr("data-customer-id"),
                                     method: "DELETE",
                                     success: function () {
                                         table.api().row(button.parents("tr")).remove().draw();
