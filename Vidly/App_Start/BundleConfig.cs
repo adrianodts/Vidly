@@ -32,10 +32,12 @@ namespace Vidly
             //    "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      //"~/Content/bootstrap-flatly.css",
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.mim.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/Site.css"));
+
+            //"~/Content/bootstrap-flatly.css",
         }
     }
 }
