@@ -10,6 +10,7 @@ namespace Vidly.Models
     public class Movie
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Name is required")]
         [Display(Name = "Name")]
         [StringLength(255)]
@@ -18,12 +19,18 @@ namespace Vidly.Models
         //[DateValidate]
         [Display(Name = "Release Date")]
         public DateTime? ReleaseDate { get; set; }
+
         public DateTime? DateAdded { get; set; }
+
         [Required(ErrorMessage = "Number in Stock is required")]
         [Display(Name = "Number in Stock")]
         [Range(1, 20, ErrorMessage = "Number in Stock should be between 1 and 20")]
         public int StockQuantity{ get; set; }
+
+        public int NumberAvailable { get; set; }
+
         public Genre Genre { get; set; }
+
         [Required(ErrorMessage = "Genre is required")]
         [Display(Name = "Genre")]
         public byte GenreId { get; set; }

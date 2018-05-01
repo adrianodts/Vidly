@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Web.Http;
 using AutoMapper;
+using Vidly.Data;
 using Vidly.Dtos;
 using Vidly.Models;
 
@@ -19,19 +20,35 @@ namespace Vidly.Controllers.Api
             this._context = new ApplicationDbContext();
         }
 
-        [HttpGet]
-        public IHttpActionResult GetCustomers()
+        // GET /api/customers
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            var customersList = this._context.Customers
-                .Include(c => c.MembershipType)
+            var customersQuery = _context.Customers
+                .Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery
                 .ToList()
                 .Select(Mapper.Map<Customer, CustomersDto>);
 
-            return Ok(customersList);
+            return Ok(customerDtos);
         }
 
-        [HttpGet]
-        public IHttpActionResult GetMovieById(int id)
+        //[HttpGet]
+        //public IHttpActionResult GetCustomers()
+        //{
+        //    var customersList = this._context.Customers
+        //        .Include(c => c.MembershipType)
+        //        .ToList()
+        //        .Select(Mapper.Map<Customer, CustomersDto>);
+
+        //    return Ok(customersList);
+        //}
+
+
+        public IHttpActionResult GetCustomersById(int id)
         {
             var customer = _context.Customers
                 .SingleOrDefault(m => m.Id == id);
