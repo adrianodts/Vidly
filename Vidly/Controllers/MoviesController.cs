@@ -161,7 +161,9 @@ namespace Vidly.Controllers
                 return View("MovieForm", viewModel);
             }
 
-            if (movie.Id == 0)
+            movie.NumberAvailable = movie.StockQuantity;
+
+            if (movie.Id == 0) 
                 this._context.Movies.Add(movie);
             else
             {
@@ -170,6 +172,7 @@ namespace Vidly.Controllers
                 movieDatabase.ReleaseDate = movie.ReleaseDate;
                 movieDatabase.GenreId = movie.GenreId;
                 movieDatabase.StockQuantity = movie.StockQuantity;
+                movieDatabase.NumberAvailable = movie.NumberAvailable;
             }
             this._context.SaveChanges();
 
